@@ -1,6 +1,32 @@
 
 "use client";
 
+// Add global SpeechRecognition type for TypeScript
+declare global {
+  interface Window {
+    SpeechRecognition: typeof SpeechRecognition;
+    webkitSpeechRecognition: typeof SpeechRecognition;
+  }
+  // Minimal SpeechRecognition type definition
+  var SpeechRecognition: {
+    prototype: SpeechRecognition;
+    new (): SpeechRecognition;
+  };
+  interface SpeechRecognition extends EventTarget {
+    continuous: boolean;
+    interimResults: boolean;
+    lang: string;
+    start(): void;
+    stop(): void;
+    onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onend: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onerror: ((this: SpeechRecognition, ev: any) => any) | null;
+    onresult: ((this: SpeechRecognition, ev: any) => any) | null;
+    resultIndex?: number;
+    results?: any;
+  }
+}
+
 import { useState, useTransition, useEffect, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { AppLayout } from "@/components/app-layout";
