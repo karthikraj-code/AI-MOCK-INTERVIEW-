@@ -25,18 +25,19 @@ function sanitizeBase64Data(dataUri: string): string {
 
 // This function processes chunks in parallel and combines the results.
 export async function getInterviewAnalysis(
-  videoDataUri: string // This will be the full video for context, chunks are handled internally
+  videoReference: string // Cloud URL (preferred) or data URI or raw base64
 ): Promise<AnalysisResult> {
-  if (!videoDataUri) {
+  if (!videoReference) {
     return { error: 'No video data received.' };
   }
 
   try {
-    // Sanitize the base64 data to ensure it's clean for the AI API
-    const sanitizedVideoData = sanitizeBase64Data(videoDataUri);
-    
-    // Create proper data URIs with sanitized base64 data
-    const videoDataUriClean = `data:video/webm;base64,${sanitizedVideoData}`;
+    const isHttpUrl = videoReference.startsWith('http://') || videoReference.startsWith('https://');
+    const isDataUri = videoReference.startsWith('data:');
+    // Build a safe reference for the AI media placeholder
+    const videoForAi = isHttpUrl || isDataUri
+      ? videoReference
+      : `data:video/webm;base64,${sanitizeBase64Data(videoReference)}`;
     
     // The main idea of chunking would be to get an array of data URIs.
     // For this implementation, we will simulate the parallel nature
@@ -44,8 +45,8 @@ export async function getInterviewAnalysis(
     // the logic for handling multiple chunks would go.
 
     const [bodyLanguagePromise, transcriptionPromise] = [
-      analyzeBodyLanguage({ videoDataUri: videoDataUriClean }),
-      transcribeAudio({ audioDataUri: videoDataUriClean })
+      analyzeBodyLanguage({ videoDataUri: videoForAi }),
+      transcribeAudio({ audioDataUri: videoForAi })
     ];
 
     const transcriptionResult = await transcriptionPromise;

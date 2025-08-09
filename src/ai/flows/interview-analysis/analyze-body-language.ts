@@ -15,7 +15,7 @@ const AnalyzeBodyLanguageInputSchema = z.object({
   videoDataUri: z
     .string()
     .describe(
-      "A video of the user's interview, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
+      "A video reference: either a public HTTPS URL (recommended), a full data URI, or a raw base64 string."
     ),
 });
 export type AnalyzeBodyLanguageInput = z.infer<typeof AnalyzeBodyLanguageInputSchema>;
@@ -54,7 +54,7 @@ You will analyze the video of the interview and provide feedback on the user's e
 
 Use the following video as the primary source of information about the user's body language.
 
-Video: {{media url=videoDataUri}}
+Video: {{media type="video/webm" url=videoDataUri}}
 
 Based on your analysis, provide a score (0-100) for eye contact, a ratio (0-1) for smile ratio, a description of gesture usage, and an analysis of posture. Be succinct and professional in your feedback.
 `,
@@ -68,16 +68,19 @@ const analyzeBodyLanguageFlow = ai.defineFlow(
     outputSchema: AnalyzeBodyLanguageOutputSchema,
   },
   async input => {
-    // Validate and clean the base64 data
-    const videoDataUri = input.videoDataUri;
-    let cleanVideoDataUri = videoDataUri;
-    
-    // Ensure proper data URI format
-    if (!videoDataUri.startsWith('data:')) {
-      cleanVideoDataUri = `data:video/webm;base64,${videoDataUri}`;
+    // Accept either a remote URL or a data URI, or a raw base64 string.
+    const videoInput = input.videoDataUri;
+    let normalizedVideoReference = videoInput;
+
+    const isHttpUrl = videoInput.startsWith('http://') || videoInput.startsWith('https://');
+    const isDataUri = videoInput.startsWith('data:');
+
+    if (!isHttpUrl && !isDataUri) {
+      normalizedVideoReference = `data:video/webm;base64,${videoInput}`;
     }
-    
-    const {output} = await prompt({ videoDataUri: cleanVideoDataUri });
+
+    // Pass through real HTTPS URLs or data URIs directly; do not wrap URLs as data
+    const {output} = await prompt({ videoDataUri: normalizedVideoReference });
     return output!;
   }
 );

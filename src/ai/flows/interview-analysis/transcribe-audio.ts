@@ -15,7 +15,7 @@ const TranscribeAudioInputSchema = z.object({
   audioDataUri: z
     .string()
     .describe(
-      "The recorded interview session audio, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
+      "An audio/video reference: either a public HTTPS URL (recommended), a full data URI, or a raw base64 string."
     ),
 });
 export type TranscribeAudioInput = z.infer<typeof TranscribeAudioInputSchema>;
@@ -33,7 +33,7 @@ const transcribeAudioPrompt = ai.definePrompt({
   name: 'transcribeAudioPrompt',
   input: {schema: TranscribeAudioInputSchema},
   output: {schema: TranscribeAudioOutputSchema},
-  prompt: `Transcribe the following audio into text.\n\nAudio: {{media url=audioDataUri}}`,
+  prompt: `Transcribe the following audio into text.\n\nAudio: {{media type="video/webm" url=audioDataUri}}`,
   model: 'googleai/gemini-1.5-flash-latest',
 });
 
@@ -44,16 +44,19 @@ const transcribeAudioFlow = ai.defineFlow(
     outputSchema: TranscribeAudioOutputSchema,
   },
   async input => {
-    // Validate and clean the base64 data
-    const audioDataUri = input.audioDataUri;
-    let cleanAudioDataUri = audioDataUri;
-    
-    // Ensure proper data URI format
-    if (!audioDataUri.startsWith('data:')) {
-      cleanAudioDataUri = `data:video/webm;base64,${audioDataUri}`;
+    // Accept either a remote URL or a data URI, or a raw base64 string.
+    const audioInput = input.audioDataUri;
+    let normalizedAudioReference = audioInput;
+
+    const isHttpUrl = audioInput.startsWith('http://') || audioInput.startsWith('https://');
+    const isDataUri = audioInput.startsWith('data:');
+
+    if (!isHttpUrl && !isDataUri) {
+      normalizedAudioReference = `data:video/webm;base64,${audioInput}`;
     }
-    
-    const {output} = await transcribeAudioPrompt({ audioDataUri: cleanAudioDataUri });
+
+    // Pass through real HTTPS URLs or data URIs directly; do not wrap URLs as data
+    const {output} = await transcribeAudioPrompt({ audioDataUri: normalizedAudioReference });
     return output!;
   }
 );

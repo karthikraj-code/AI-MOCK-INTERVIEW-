@@ -6,6 +6,7 @@ import InterviewView from './interview-view';
 import AnalysisScreen from './analysis-screen';
 import ReportView from './report/report-view';
 import { useMediaRecorder } from '@/hooks/use-media-recorder';
+import { uploadVideoToCloudinary, dataUriToFile } from '@/lib/cloudinary';
 import { getInterviewAnalysis } from '@/lib/interview-analysis/actions';
 import type { AnalysisResult } from '@/lib/interview-analysis/types';
 import { useToast } from '@/hooks/use-toast';
@@ -76,7 +77,19 @@ export default function InterviewStepper() {
         return;
     }
 
-    const result = await getInterviewAnalysis(dataUri);
+    // Convert data URI to Blob to upload, then send URL to server
+    let videoReference = dataUri;
+    try {
+      // Convert data URI to a File with the proper MIME and extension
+      const file = dataUriToFile(dataUri);
+      const url = await uploadVideoToCloudinary(file);
+      videoReference = url;
+    } catch (e) {
+      // If upload fails, fall back to sending data URI (may hit size limits on some hosts)
+      console.warn('Cloud upload failed, falling back to data URI for analysis:', e);
+    }
+
+    const result = await getInterviewAnalysis(videoReference);
     setAnalysisResult(result);
 
     if (result.error) {

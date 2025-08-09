@@ -12,6 +12,10 @@ export const config = {
   openaiApiKey: process.env.OPENAI_API_KEY,
   assemblyAiApiKey: process.env.ASSEMBLYAI_API_KEY,
   deepgramApiKey: process.env.DEEPGRAM_API_KEY,
+  cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudinaryUploadPreset: process.env.CLOUDINARY_UPLOAD_PRESET,
+  cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+  cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   // The Gemini API Key is automatically picked up by the googleAI() plugin
   // from the GEMINI_API_KEY environment variable.
 };
