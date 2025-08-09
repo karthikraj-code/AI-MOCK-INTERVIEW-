@@ -6,6 +6,8 @@ import connectToDatabase from "./db";
 import User from "./models/User";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // Ensure correct host/redirects behind Vercel proxy
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -53,7 +55,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  // Allow either NEXTAUTH_SECRET or AUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
 
   pages: {
     signIn: "/login",
@@ -61,6 +64,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: "/auth/error",
   },
   callbacks: {
+    // Normalize redirects to deployment base URL
+    async redirect({ url, baseUrl }) {
+      try {
+        const target = new URL(url, baseUrl);
+        // Only allow same-origin redirects
+        if (target.origin === baseUrl) return target.toString();
+      } catch {}
+      // Relative URLs are allowed
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      return baseUrl;
+    },
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
