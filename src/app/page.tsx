@@ -199,7 +199,7 @@ const InterviewTipsCarousel = () => {
   const IconComponent = tips[currentTip].icon;
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+    <div className="bg-white dark:bg-slate-800 p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -209,22 +209,22 @@ const InterviewTipsCarousel = () => {
         <div className="text-sm text-gray-500">Interview Tips</div>
       </div>
       
-      <div className="space-y-6">
-        <div className="flex items-center space-x-4">
-          <div className={`bg-gradient-to-r ${tips[currentTip].color} p-3 rounded-2xl transition-all duration-500 transform hover:scale-110`}>
-            <IconComponent className="h-6 w-6 text-white" />
+      <div className="space-y-4 xs:space-y-6">
+        <div className="flex items-center space-x-3 xs:space-x-4">
+          <div className={`bg-gradient-to-r ${tips[currentTip].color} p-2 xs:p-3 rounded-xl xs:rounded-2xl transition-all duration-500 transform hover:scale-110`}>
+            <IconComponent className="h-5 w-5 xs:h-6 xs:w-6 text-white" />
           </div>
           <div className="flex-1">
-            <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">
+            <div className="text-xs xs:text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">
               Pro Tip #{currentTip + 1}
             </div>
-            <div className="text-lg font-bold text-gray-900 dark:text-white transition-all duration-300">
+            <div className="text-base xs:text-lg font-bold text-gray-900 dark:text-white transition-all duration-300">
               {tips[currentTip].title}
             </div>
           </div>
         </div>
         
-        <p className="text-gray-600 dark:text-gray-300 leading-relaxed transition-all duration-300">
+        <p className="text-sm xs:text-base text-gray-600 dark:text-gray-300 leading-relaxed transition-all duration-300">
           {tips[currentTip].description}
         </p>
         
@@ -459,28 +459,28 @@ export default function LandingPage() {
         
         <FloatingOrbs />
         
-        <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div ref={heroRef} className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
               <div className={`transition-all duration-1000 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-7 mb-6">
-                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl flex-shrink-0">
-                    <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                <div className="flex flex-col xs:flex-row items-start xs:items-center space-y-2 xs:space-y-0 xs:space-x-3 sm:space-x-4 lg:space-x-7 mb-4 sm:mb-6">
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1.5 xs:p-2 rounded-lg xs:rounded-xl flex-shrink-0">
+                    <GraduationCap className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-none">
+                  <span className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                     Placement Training Platform
                   </span>
                 </div>
                 
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-400 text-sm font-medium mb-6">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-400 text-xs xs:text-sm font-medium mb-4 sm:mb-6">
+                  <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2" />
                   AI-Powered Interview Training
                 </div>
                 
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Master Your
                   <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Dream Interview
@@ -491,7 +491,7 @@ export default function LandingPage() {
               <div className={`transition-all duration-1000 delay-300 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <p className="text-lg sm:text-xl text-white leading-relaxed max-w-lg">
+                <p className="text-base xs:text-lg sm:text-xl text-white leading-relaxed max-w-lg">
                   Transform your career with our comprehensive AI-powered platform. Practice, analyze, and perfect your interview skills with personalized feedback.
                 </p>
               </div>
@@ -502,11 +502,12 @@ export default function LandingPage() {
                 <Button 
                   onClick={handleSignIn}
                   size="lg"
-                  className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300"
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 xs:px-6 sm:px-8 py-3 xs:py-4 text-sm xs:text-base sm:text-lg font-semibold shadow-lg hover:shadow-2xl transition-all duration-300"
                 >
-                  <Play className="mr-2 h-5 w-5" />
-                  Start Your First Mock Interview
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <Play className="mr-1.5 xs:mr-2 h-4 w-4 xs:h-5 xs:w-5" />
+                  <span className="hidden xs:inline">Start Your First Mock Interview</span>
+                  <span className="xs:hidden">Start Mock Interview</span>
+                  <ArrowRight className="ml-1.5 xs:ml-2 h-4 w-4 xs:h-5 xs:w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
               
