@@ -46,7 +46,7 @@ import { Chatbot } from "./chatbot/chatbot";
 const CareerCompassLogo = () => (
     <div className="flex items-center gap-2">
         <GraduationCap className="h-6 w-6 text-primary" />
-        <span className="text-xl font-bold text-primary">Career Compass</span>
+        <span className="text-xl font-bold text-primary">Placement Training Platform</span>
     </div>
 )
 
@@ -83,8 +83,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   const navLinks = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { href: "/interview/setup", label: "Aptitude/HR", icon: ClipboardList, activePaths: ["/interview/setup", "/interview/[id]", "/interview/[id]/results"] },
-    { href: "/interview-analysis", label: "Intro Analyzer", icon: UserCheck },
+    { href: "/interview/setup", label: "Aptitude/HR/GD", icon: ClipboardList, activePaths: ["/interview/setup", "/interview/[id]", "/interview/[id]/results"] },
+    { href: "/interview-analysis", label: "Video Analyzer", icon: UserCheck },
     { href: "/resume-analyzer", label: "Resume Analyzer", icon: FileText },
     { href: "/interview/technical/setup", label: "Mock Tech Interview", icon: BrainCircuit, activePaths: ["/interview/technical/setup", "/interview/technical/[id]"] },
     { href: "/language-coach", label: "Language Coach", icon: Languages },

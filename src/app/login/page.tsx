@@ -88,7 +88,7 @@ export default function LoginPage() {
       <div className="flex flex-col items-center justify-center p-6 lg:p-8 bg-gradient-to-b from-purple-50 via-white to-white dark:from-background dark:to-background">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Welcome to Career Compass</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Welcome to Placement Training Platform</h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">Transform your hiring process with AI-powered intelligence</p>
           </div>
 
@@ -185,22 +185,14 @@ export default function LoginPage() {
             </Link>
           </p>
 
-          <div className="p-6 rounded-lg bg-blue-50 border-2 border-orange-400 dark:bg-secondary dark:border-orange-500">
-             <div className="flex items-center gap-3">
-                <GraduationCap className="h-6 w-6 text-orange-500" />
-                <h3 className="text-lg font-bold text-gray-800 dark:text-primary-foreground">343+ Students and Counting!</h3>
-             </div>
-             <p className="mt-2 text-gray-600 dark:text-muted-foreground">
-                Students from various colleges are actively using our platform to enhance their skills, gain confidence, and ace their interviews.
-             </p>
-          </div>
+          
         </div>
       </div>
 
       {/* Right Panel */}
       <div className="hidden md:flex flex-col justify-center p-12 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
         <div className="max-w-lg mx-auto">
-            <h2 className="text-4xl font-bold">Why Choose Career Compass?</h2>
+            <h2 className="text-4xl font-bold">Why to Choose Placement Training Platform?</h2>
             <p className="mt-4 text-lg opacity-90">Our AI-powered platform offers comprehensive interview preparation tools to help you succeed.</p>
 
             <div className="mt-10 space-y-6">
@@ -230,14 +222,7 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <div className="mt-12">
-                <h3 className="text-2xl font-bold">Testimonials</h3>
-                <div className="mt-4 p-6 rounded-xl bg-white/20 backdrop-blur-sm">
-                    <p className="italic">"Thanks to Career Compass, I felt much more confident during my actual interviews. The platform's analytics helped me identify and improve my weak areas."</p>
-                    <p className="mt-4 font-bold">Rahul Verma</p>
-                    <p className="text-sm opacity-90">Recent Graduate</p>
-                </div>
-            </div>
+            
         </div>
       </div>
     </div>

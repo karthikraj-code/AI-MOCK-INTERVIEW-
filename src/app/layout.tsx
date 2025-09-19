@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
-  title: 'Career Compass',
+  title: 'Placement Training Platform',
   description: 'AI-powered mock interview system',
 };
 
