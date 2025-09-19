@@ -112,7 +112,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-purple-50 dark:from-background dark:to-background">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-purple-50 dark:from-slate-900 dark:to-slate-800">
       <header className="flex justify-between items-center p-4 border-b">
         <div className="flex items-center gap-2">
             <CareerCompassLogo />
@@ -125,8 +125,8 @@ export default function SignupPage() {
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md space-y-6">
           <div className="text-center">
-            <h2 className="text-3xl font-bold" style={{color: '#4A43E3'}}>Create your account</h2>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">Enter your details to get started</p>
+            <h2 className="text-3xl font-bold text-primary dark:text-white">Create your account</h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">Enter your details to get started</p>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-6">
@@ -139,7 +139,7 @@ export default function SignupPage() {
                 required 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="bg-white dark:bg-secondary"
+                className="bg-white dark:bg-slate-800"
               />
             </div>
             <div className="space-y-2">
@@ -151,7 +151,7 @@ export default function SignupPage() {
                 required 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-white dark:bg-secondary"
+                className="bg-white dark:bg-slate-800"
               />
             </div>
             <div className="space-y-2">

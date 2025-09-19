@@ -85,11 +85,11 @@ export default function LoginPage() {
   return (
     <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Panel */}
-      <div className="flex flex-col items-center justify-center p-6 lg:p-8 bg-gradient-to-b from-purple-50 via-white to-white dark:from-background dark:to-background">
+      <div className="flex flex-col items-center justify-center p-6 lg:p-8 bg-gradient-to-b from-purple-50 via-white to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Welcome to Placement Training Platform</h1>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">Transform your hiring process with AI-powered intelligence</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome to Placement Training Platform</h1>
+            <p className="mt-2 text-gray-600 dark:text-gray-300">Transform your hiring process with AI-powered intelligence</p>
           </div>
 
           <form onSubmit={handleCredentialsLogin} className="space-y-6">
@@ -107,7 +107,7 @@ export default function LoginPage() {
             <div className="space-y-2">
                 <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
-                    <Link href="#" className="text-sm font-medium text-blue-600 hover:underline">
+                    <Link href="#" className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline">
                         Forgot password?
                     </Link>
                 </div>
@@ -124,7 +124,7 @@ export default function LoginPage() {
                     <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 dark:text-gray-400"
                     >
                     {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -180,7 +180,7 @@ export default function LoginPage() {
 
           <p className="text-center text-gray-600 dark:text-gray-400">
             Don't have an account?{" "}
-            <Link href="/signup" className="font-semibold text-blue-600 hover:underline">
+            <Link href="/signup" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
               Sign up
             </Link>
           </p>

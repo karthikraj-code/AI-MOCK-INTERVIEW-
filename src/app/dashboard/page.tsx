@@ -83,13 +83,13 @@ export default function DashboardPage() {
 
   return (
     <AppLayout>
-        <main className="flex-1 p-4 md:p-8 bg-gray-50/50 dark:bg-background">
-            <div className="bg-primary/10 dark:bg-card rounded-lg p-6 flex items-center justify-between mb-8">
+        <main className="flex-1 p-4 md:p-8 bg-gray-50/50 dark:bg-slate-900">
+            <div className="bg-primary/10 dark:bg-slate-800/50 rounded-lg p-6 flex items-center justify-between mb-8">
                 <div className="flex items-center gap-4">
                     <WelcomeBot />
                     <div>
-                        <h1 className="text-2xl font-bold text-primary dark:text-primary-foreground">Welcome back Champ, {userName}!</h1>
-                        <p className="text-primary/80 dark:text-muted-foreground">Ready for your next interview session?</p>
+                        <h1 className="text-2xl font-bold text-primary dark:text-white">Welcome back Champ, {userName}!</h1>
+                        <p className="text-primary/80 dark:text-gray-300">Ready for your next interview session?</p>
                     </div>
                 </div>
                 <Link href="/interview/setup" passHref>
@@ -102,7 +102,7 @@ export default function DashboardPage() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <Card className="lg:col-span-2">
                     <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle className="text-primary dark:text-primary-foreground">Recent Performance</CardTitle>
+                        <CardTitle className="text-primary dark:text-white">Recent Performance</CardTitle>
                         <BarChart className="w-5 h-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="min-h-[150px]">
@@ -112,12 +112,12 @@ export default function DashboardPage() {
                                 <Link href={`/interview/${interview.id}/results`} key={interview.id} passHref>
                                     <div className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 dark:hover:bg-secondary cursor-pointer">
                                         <div>
-                                            <p className="font-semibold text-card-foreground dark:text-primary-foreground">{interview.jobRole}</p>
+                                            <p className="font-semibold text-card-foreground dark:text-white">{interview.jobRole}</p>
                                             <p className="text-sm text-muted-foreground">
                                                 Interviewed on {new Date(interview.date).toLocaleDateString()}
                                             </p>
                                         </div>
-                                        <div className="text-lg font-bold text-primary dark:text-primary">{interview.overallScore}/10</div>
+                                        <div className="text-lg font-bold text-primary dark:text-blue-400">{interview.overallScore}/10</div>
                                     </div>
                                 </Link>
                             ))}
@@ -131,7 +131,7 @@ export default function DashboardPage() {
                 </Card>
                  <Card>
                     <CardHeader className="flex flex-row items-center justify-between">
-                        <CardTitle className="text-primary dark:text-primary-foreground">Video Analysis</CardTitle>
+                        <CardTitle className="text-primary dark:text-white">Video Analysis</CardTitle>
                         <Lightbulb className="w-5 h-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent className="flex flex-col items-center justify-center text-center text-muted-foreground min-h-[150px] gap-4">

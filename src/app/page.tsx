@@ -199,14 +199,14 @@ const InterviewTipsCarousel = () => {
   const IconComponent = tips[currentTip].icon;
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+    <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
           <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
-        <div className="text-sm text-gray-500">Interview Tips</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Interview Tips</div>
       </div>
       
       <div className="space-y-4 xs:space-y-6">
@@ -224,7 +224,7 @@ const InterviewTipsCarousel = () => {
           </div>
         </div>
         
-        <p className="text-sm xs:text-base text-gray-600 dark:text-gray-300 leading-relaxed transition-all duration-300">
+        <p className="text-sm xs:text-base text-gray-700 dark:text-gray-300 leading-relaxed transition-all duration-300">
           {tips[currentTip].description}
         </p>
         
@@ -243,7 +243,7 @@ const InterviewTipsCarousel = () => {
         </div>
         
         {/* Tip counter */}
-        <div className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
+        <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
           <span>Interactive Tips</span>
           <span>{currentTip + 1} of {tips.length}</span>
         </div>
@@ -470,19 +470,19 @@ export default function LandingPage() {
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1.5 xs:p-2 rounded-lg xs:rounded-xl flex-shrink-0">
                     <GraduationCap className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <span className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight whitespace-nowrap">
+                  <span className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-tight whitespace-nowrap">
                     Placement Training Platform
                   </span>
                 </div>
                 
-                <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-400 text-xs xs:text-sm font-medium mb-4 sm:mb-6">
-                  <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2" />
+                <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 rounded-full bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 text-white text-xs xs:text-sm font-medium mb-4 sm:mb-6">
+                  <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-white" />
                   AI-Powered Interview Training
                 </div>
                 
                 <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Master Your
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
                     Dream Interview
                   </span>
                 </h1>
@@ -491,7 +491,7 @@ export default function LandingPage() {
               <div className={`transition-all duration-1000 delay-300 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <p className="text-base xs:text-lg sm:text-xl text-white leading-relaxed max-w-lg">
+                <p className="text-base xs:text-lg sm:text-xl text-white/90 leading-relaxed max-w-lg">
                   Transform your career with our comprehensive AI-powered platform. Practice, analyze, and perfect your interview skills with personalized feedback.
                 </p>
               </div>

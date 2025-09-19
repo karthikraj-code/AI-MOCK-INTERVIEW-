@@ -124,11 +124,11 @@ export default function InterviewSetupPage() {
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8">
+      <main className="flex-1 p-4 md:p-8 bg-gray-50/50 dark:bg-slate-900">
         <div className="max-w-2xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">New Mock Interview</CardTitle>
+              <CardTitle className="text-2xl text-gray-900 dark:text-white">New Mock Interview</CardTitle>
               <CardDescription>
                 Select an interview round, provide the job role, and upload your resume.
               </CardDescription>
@@ -142,7 +142,7 @@ export default function InterviewSetupPage() {
                     name="interviewRound"
                     render={({ field }) => (
                       <FormItem className="space-y-3">
-                        <FormLabel className="text-base">Select Interview Round</FormLabel>
+                        <FormLabel className="text-base text-gray-900 dark:text-white">Select Interview Round</FormLabel>
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}

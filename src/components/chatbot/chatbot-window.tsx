@@ -33,15 +33,15 @@ export function ChatbotWindow({ messages, onClose, onSubmit, isLoading }: Chatbo
   };
 
   return (
-    <Card className="fixed bottom-6 right-6 w-full max-w-sm h-[70vh] flex flex-col shadow-2xl z-50 animate-in slide-in-from-bottom-10 duration-500">
+    <Card className="fixed bottom-6 right-6 w-full max-w-sm h-[70vh] flex flex-col shadow-2xl z-50 animate-in slide-in-from-bottom-10 duration-500 bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700">
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-2">
             <div className="p-2 bg-primary/10 rounded-full">
                 <Bot className="h-5 w-5 text-primary"/>
             </div>
             <div>
-                <CardTitle>AI Interview Assistant</CardTitle>
-                <CardDescription>Your 24/7 placement guide</CardDescription>
+                <CardTitle className="text-gray-900 dark:text-white">AI Interview Assistant</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">Your 24/7 placement guide</CardDescription>
             </div>
         </div>
         <Button variant="ghost" size="icon" onClick={onClose}>
@@ -53,7 +53,7 @@ export function ChatbotWindow({ messages, onClose, onSubmit, isLoading }: Chatbo
           {messages.map((msg, index) => (
             <div key={index} className={`flex items-start gap-3 ${msg.sender === 'user' ? 'justify-end' : ''}`}>
               {msg.sender === 'ai' && <Bot className="h-6 w-6 text-primary flex-shrink-0" />}
-              <div className={`rounded-lg p-3 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+              <div className={`rounded-lg p-3 max-w-[80%] ${msg.sender === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted dark:bg-slate-700'}`}>
                 <p className="text-sm">{msg.text}</p>
               </div>
               {msg.sender === 'user' && <User className="h-6 w-6 text-muted-foreground flex-shrink-0" />}
@@ -62,7 +62,7 @@ export function ChatbotWindow({ messages, onClose, onSubmit, isLoading }: Chatbo
           {isLoading && (
             <div className="flex items-start gap-3">
               <Bot className="h-6 w-6 text-primary flex-shrink-0" />
-              <div className="rounded-lg p-3 bg-muted flex items-center gap-2">
+              <div className="rounded-lg p-3 bg-muted dark:bg-slate-700 flex items-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 <p className="text-sm text-muted-foreground">Thinking...</p>
               </div>

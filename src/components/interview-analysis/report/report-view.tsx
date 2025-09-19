@@ -15,11 +15,11 @@ type ReportViewProps = {
 const StatCard = ({ icon, title, value, unit }: { icon: React.ReactNode, title: string, value: string | number, unit?: string }) => (
     <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-white">{title}</CardTitle>
             <div className="text-muted-foreground">{icon}</div>
         </CardHeader>
         <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
                 {value}
                 {unit && <span className="text-xs text-muted-foreground ml-1">{unit}</span>}
             </div>
@@ -31,7 +31,7 @@ export default function ReportView({ report, onRetry }: ReportViewProps) {
   return (
     <div className="w-full max-w-5xl mx-auto p-4 animate-fade-in space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Your Interview Report</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Your Interview Report</h1>
         <Button onClick={onRetry} variant="outline">
             <Repeat className="mr-2 h-4 w-4" /> Try Again
         </Button>
