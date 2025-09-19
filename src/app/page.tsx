@@ -199,7 +199,7 @@ const InterviewTipsCarousel = () => {
   const IconComponent = tips[currentTip].icon;
 
   return (
-    <div className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
+    <div className="bg-white dark:bg-slate-800 p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -459,18 +459,18 @@ export default function LandingPage() {
         
         <FloatingOrbs />
         
-        <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
               <div className={`transition-all duration-1000 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <div className="flex items-center space-x-7 mb-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-7 mb-6">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-xl flex-shrink-0">
-                    <GraduationCap className="h-6 w-6 text-white" />
+                    <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <span className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent whitespace-nowrap leading-none">
+                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-none">
                     Placement Training Platform
                   </span>
                 </div>
@@ -480,7 +480,7 @@ export default function LandingPage() {
                   AI-Powered Interview Training
                 </div>
                 
-                <h1 className="text-2xl lg:text-5xl font-bold text-white leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Master Your
                   <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Dream Interview
@@ -491,7 +491,7 @@ export default function LandingPage() {
               <div className={`transition-all duration-1000 delay-300 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <p className="text-xl text-white leading-relaxed max-w-lg">
+                <p className="text-lg sm:text-xl text-white leading-relaxed max-w-lg">
                   Transform your career with our comprehensive AI-powered platform. Practice, analyze, and perfect your interview skills with personalized feedback.
                 </p>
               </div>
@@ -526,12 +526,12 @@ export default function LandingPage() {
                 <InterviewTipsCarousel />
                 
                 {/* Floating elements */}
-                <div className="absolute -top-6 -right-6 bg-gradient-to-r from-blue-500 to-purple-500 p-4 rounded-2xl shadow-lg animate-bounce">
-                  <TrendingUp className="w-6 h-6 text-white" />
+                <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 bg-gradient-to-r from-blue-500 to-purple-500 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg animate-bounce">
+                  <TrendingUp className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                 </div>
                 
-                <div className="absolute -bottom-6 -left-6 bg-gradient-to-r from-pink-500 to-orange-500 p-4 rounded-2xl shadow-lg animate-pulse">
-                  <Target className="w-6 h-6 text-white" />
+                <div className="absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 bg-gradient-to-r from-pink-500 to-orange-500 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg animate-pulse">
+                  <Target className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                 </div>
               </div>
             </div>
