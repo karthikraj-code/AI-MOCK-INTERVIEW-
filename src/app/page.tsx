@@ -466,11 +466,11 @@ export default function LandingPage() {
               <div className={`transition-all duration-1000 ${
                 heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}>
-                <div className="flex flex-col xs:flex-row items-start xs:items-center space-y-2 xs:space-y-0 xs:space-x-3 sm:space-x-4 lg:space-x-7 mb-4 sm:mb-6">
+                <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 lg:space-x-7 mb-4 sm:mb-6">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1.5 xs:p-2 rounded-lg xs:rounded-xl flex-shrink-0">
                     <GraduationCap className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 text-white" />
                   </div>
-                  <span className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                  <span className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight whitespace-nowrap">
                     Placement Training Platform
                   </span>
                 </div>
