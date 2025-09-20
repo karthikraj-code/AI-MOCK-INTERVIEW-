@@ -131,7 +131,7 @@ export default function InterviewSetupPage() {
           <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-blue-500/15 to-pink-500/15 rounded-full blur-lg animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="w-full max-w-4xl mx-auto relative z-10 px-4 sm:px-0 overflow-x-hidden">
           {/* Enhanced Header Section */}
           <div className="text-center mb-8 sm:mb-12 transform transition-all duration-1000 hover:scale-105">
             <div className="relative inline-block">

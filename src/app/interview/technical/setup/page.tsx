@@ -61,7 +61,7 @@ export default function TechnicalInterviewSetupPage() {
   return (
     <AppLayout>
       <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-screen">
-        <div className="w-full max-w-2xl mx-auto px-4 sm:px-0">
+        <div className="w-full max-w-2xl mx-auto px-4 sm:px-0 overflow-x-hidden">
           <Card>
             <CardHeader className="p-4 sm:p-6">
                 <div className="flex items-center gap-2">

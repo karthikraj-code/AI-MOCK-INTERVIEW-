@@ -173,7 +173,7 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            <div className="relative z-10 p-3 sm:p-4 md:p-6 lg:p-8 space-y-6 sm:space-y-8">
+            <div className="relative z-10 p-3 sm:p-4 md:p-6 lg:p-8 space-y-6 sm:space-y-8 max-w-full overflow-x-hidden">
                 {/* Enhanced Welcome Section */}
                 <div 
                     className="relative overflow-hidden rounded-2xl p-8 shadow-xl"
