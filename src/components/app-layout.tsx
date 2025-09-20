@@ -9,12 +9,10 @@ import {
   LogOut,
   User,
   Settings,
-  Sun,
   Sparkles,
   BarChart2,
   Crown,
   GraduationCap,
-  Moon,
   BrainCircuit,
   Languages,
   Users,
@@ -26,7 +24,9 @@ import {
   ClipboardList,
   UserCheck,
   FileText,
-  Library
+  Library,
+  PanelLeftClose,
+  PanelLeftOpen
 } from "lucide-react";
 
 import {
@@ -39,7 +39,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useTheme } from "next-themes";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Chatbot } from "./chatbot/chatbot";
 
@@ -57,9 +56,9 @@ const getDefaultAvatar = (email: string) => {
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { data: session } = useSession();
   const [userImage, setUserImage] = useState("");
   const [userName, setUserName] = useState("U");
@@ -128,8 +127,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-       <div className="hidden border-r bg-muted/40 dark:bg-slate-800/50 md:block">
+    <div className={`grid min-h-screen w-full transition-all duration-300 ${
+      isSidebarOpen 
+        ? 'md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]' 
+        : 'md:grid-cols-[0_1fr] lg:grid-cols-[0_1fr]'
+    }`}>
+       <div className={`hidden border-r bg-muted/40 md:block transition-all duration-300 ${
+         isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+       }`}>
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
@@ -142,7 +147,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="flex flex-col">
-          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 dark:bg-slate-800/50 px-4 lg:h-[60px] lg:px-6">
+          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -162,19 +167,25 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
               </SheetContent>
             </Sheet>
+            
+            {/* Desktop Sidebar Toggle */}
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="shrink-0 hidden md:flex"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
+              {isSidebarOpen ? (
+                <PanelLeftClose className="h-5 w-5" />
+              ) : (
+                <PanelLeftOpen className="h-5 w-5" />
+              )}
+              <span className="sr-only">Toggle sidebar</span>
+            </Button>
 
             <div className="w-full flex-1">
               {/* Future: Add a global search bar here maybe */}
             </div>
-            
-             <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            >
-                {mounted && (theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />)}
-            </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                   <Button variant="secondary" size="icon" className="rounded-full">
@@ -216,7 +227,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background dark:bg-slate-900 overflow-auto">
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background overflow-auto">
             {children}
           </main>
           <Chatbot section={getCurrentSection()} />

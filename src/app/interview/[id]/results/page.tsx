@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
@@ -151,88 +150,198 @@ export default function InterviewResultsPage() {
     processResults();
   }, [interviewId, router]);
 
-
+  // Enhanced loading animation with 3D effects
   if (isLoading || !results) {
     return (
       <AppLayout>
-        <main className="flex-1 p-4 md:p-8 flex flex-col items-center justify-center gap-4">
-          <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          <h2 className="text-xl font-semibold">Generating Your Results...</h2>
-          <p className="text-muted-foreground">This may take a moment. Please don't refresh the page.</p>
+        <main className="flex-1 p-4 md:p-8 flex flex-col items-center justify-center gap-4 min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-pink-500/20 to-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+            <Loader2 className="h-16 w-16 animate-spin text-primary relative z-10 drop-shadow-lg" style={{ 
+              animation: 'spin 2s linear infinite, float 3s ease-in-out infinite',
+              filter: 'drop-shadow(0 0 20px hsl(var(--primary)))'
+            }} />
+          </div>
+          <div className="text-center space-y-2 animate-pulse">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
+              Generating Your Results...
+            </h2>
+            <p className="text-muted-foreground animate-bounce">This may take a moment. Please don't refresh the page.</p>
+          </div>
+          <div className="flex space-x-1 mt-4">
+            {[0, 1, 2].map((i) => (
+              <div 
+                key={i}
+                className="w-2 h-2 bg-primary rounded-full animate-bounce"
+                style={{ animationDelay: `${i * 0.1}s` }}
+              />
+            ))}
+          </div>
         </main>
+        <style jsx>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+          }
+        `}</style>
       </AppLayout>
     );
   }
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-            <div>
-                <h1 className="text-3xl font-bold tracking-tight">Interview Results</h1>
-                <p className="text-muted-foreground">Analysis for your {results.jobRole} mock interview.</p>
-            </div>
-            <Link href="/interview/setup" passHref>
-                <Button>Start Another Interview</Button>
-            </Link>
+      <main className="flex-1 p-4 md:p-8 bg-gradient-to-br from-background via-background to-muted/10">
+        {/* Enhanced Header with Parallax Effect */}
+        <div 
+          className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-6 relative overflow-hidden rounded-2xl p-8 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 backdrop-blur-sm border border-border/50"
+          style={{
+            background: 'linear-gradient(135deg, rgb(59 130 246)/0.05 0%, rgb(236 72 153)/0.05 50%, rgb(59 130 246)/0.05 100%)',
+            boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.12)'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 animate-pulse opacity-30"></div>
+          <div className="relative z-10 transform transition-transform duration-500 hover:scale-105">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
+              Interview Results
+            </h1>
+            <p className="text-muted-foreground text-lg mt-2 font-medium">
+              Analysis for your <span className="text-blue-500 font-semibold">{results.jobRole}</span> mock interview.
+            </p>
+          </div>
+          <Link href="/interview/setup" passHref>
+            <Button 
+              size="lg"
+              className="relative overflow-hidden group bg-gradient-to-r from-blue-500 to-pink-500 hover:from-pink-500 hover:to-blue-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10">Start Another Interview</span>
+            </Button>
+          </Link>
         </div>
         
-        <div className="grid gap-6 lg:grid-cols-5">
-          <Card className="lg:col-span-5">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2"><BarChart/> Overall Scores</CardTitle>
+        <div className="grid gap-8 lg:grid-cols-5">
+          {/* Enhanced Scores Card */}
+          <Card className="lg:col-span-5 group relative overflow-hidden bg-gradient-to-br from-card via-card to-blue-500/5 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] border-border/50">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500"></div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/10 to-pink-500/10 group-hover:scale-110 transition-transform duration-300">
+                  <BarChart className="text-blue-500 group-hover:text-pink-500 transition-colors duration-300"/>
+                </div>
+                Overall Scores
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-                <RechartsBarChart accessibilityLayer data={results.scores} layout="vertical" margin={{ left: 10 }}>
-                  <CartesianGrid horizontal={false} />
-                  <XAxis type="number" dataKey="value" domain={[0, 10]} tickCount={6} />
-                  <YAxis type="category" dataKey="name" tickLine={false} axisLine={false} width={120} />
-                  <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dot" hideLabel />} />
-                  <Bar dataKey="value" radius={5} />
-                </RechartsBarChart>
-              </ChartContainer>
+            <CardContent className="relative z-10">
+              <div className="transform transition-transform duration-500 group-hover:scale-[1.01]">
+                <ChartContainer config={chartConfig} className="min-h-[220px] w-full">
+                  <RechartsBarChart accessibilityLayer data={results.scores} layout="vertical" margin={{ left: 10 }}>
+                    <CartesianGrid horizontal={false} />
+                    <XAxis type="number" dataKey="value" domain={[0, 10]} tickCount={6} />
+                    <YAxis type="category" dataKey="name" tickLine={false} axisLine={false} width={120} />
+                    <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dot" hideLabel />} />
+                    <Bar dataKey="value" radius={8} />
+                  </RechartsBarChart>
+                </ChartContainer>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="lg:col-span-3">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2"><MessageSquareQuote/> AI Feedback</CardTitle>
+          {/* Enhanced AI Feedback Card */}
+          <Card className="lg:col-span-3 group relative overflow-hidden bg-gradient-to-br from-card via-card to-pink-500/5 hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-1 border-border/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-blue-500"></div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-pink-500/10 to-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                  <MessageSquareQuote className="text-pink-500 group-hover:text-blue-500 transition-colors duration-300"/>
+                </div>
+                AI Feedback
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-base leading-relaxed whitespace-pre-wrap">{results.feedback}</p>
+            <CardContent className="relative z-10">
+              <div className="relative p-6 rounded-xl bg-gradient-to-br from-muted/30 to-pink-500/10 border border-border/30 backdrop-blur-sm group-hover:bg-gradient-to-br group-hover:from-pink-500/10 group-hover:to-blue-500/10 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                <p className="text-base leading-relaxed whitespace-pre-wrap relative z-10 group-hover:text-foreground/90 transition-colors duration-300">
+                  {results.feedback}
+                </p>
+              </div>
             </CardContent>
           </Card>
           
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2"><TrendingUp/> Learning Plan</CardTitle>
+          {/* Enhanced Learning Plan Card */}
+          <Card className="lg:col-span-2 group relative overflow-hidden bg-gradient-to-br from-card via-card to-blue-500/5 hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02] hover:-translate-y-1 border-border/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-pink-500"></div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/10 to-pink-500/10 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
+                  <TrendingUp className="text-blue-500 group-hover:text-pink-500 transition-colors duration-300"/>
+                </div>
+                Learning Plan
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-base leading-relaxed whitespace-pre-wrap">{results.learningPlan}</p>
+            <CardContent className="relative z-10">
+              <div className="relative p-6 rounded-xl bg-gradient-to-br from-muted/30 to-blue-500/10 border border-border/30 backdrop-blur-sm group-hover:bg-gradient-to-br group-hover:from-blue-500/10 group-hover:to-pink-500/10 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                <p className="text-base leading-relaxed whitespace-pre-wrap relative z-10 group-hover:text-foreground/90 transition-colors duration-300">
+                  {results.learningPlan}
+                </p>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="lg:col-span-5">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2"><BrainCircuit/> Question & Answer Breakdown</CardTitle>
+          {/* Enhanced Q&A Card */}
+          <Card className="lg:col-span-5 group relative overflow-hidden bg-gradient-to-br from-card via-card to-blue-500/5 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01] border-border/50">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500"></div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/10 to-pink-500/10 group-hover:scale-110 transition-transform duration-300">
+                  <BrainCircuit className="text-blue-500 group-hover:text-pink-500 transition-colors duration-300"/>
+                </div>
+                Question & Answer Breakdown
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <Accordion type="single" collapsible className="w-full">
+            <CardContent className="relative z-10">
+              <Accordion type="single" collapsible className="w-full space-y-4">
                 {results.qna.map((item, index) => (
-                  <AccordionItem value={`item-${index}`} key={index}>
-                    <AccordionTrigger className="text-left font-semibold hover:no-underline">{item.question}</AccordionTrigger>
-                    <AccordionContent className="space-y-4 pt-2">
-                      <div>
-                        <h4 className="font-medium mb-2 text-muted-foreground">Your Answer:</h4>
-                        <blockquote className="p-4 bg-muted border-l-4 border-muted-foreground/20 rounded-r-md">
-                            {item.answer}
+                  <AccordionItem 
+                    value={`item-${index}`} 
+                    key={index}
+                    className="border border-border/50 rounded-xl bg-gradient-to-r from-muted/20 to-transparent hover:from-muted/40 hover:to-blue-500/10 transition-all duration-300 overflow-hidden group/item"
+                  >
+                    <AccordionTrigger 
+                      className="text-left font-semibold hover:no-underline px-6 py-4 hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-pink-500/5 transition-all duration-300 group-hover/item:translate-x-2"
+                    >
+                      <div className="flex items-center gap-3 w-full">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-pink-500 flex items-center justify-center text-primary-foreground text-sm font-bold group-hover/item:scale-110 transition-transform duration-300">
+                          {index + 1}
+                        </div>
+                        <span className="group-hover/item:text-blue-500 transition-colors duration-300">
+                          {item.question}
+                        </span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-6 pt-2 px-6 pb-6">
+                      <div className="transform transition-all duration-500 hover:scale-[1.01]">
+                        <h4 className="font-medium mb-3 text-muted-foreground flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                          Your Answer:
+                        </h4>
+                        <blockquote className="p-6 bg-gradient-to-br from-muted/50 to-muted/30 border-l-4 border-muted-foreground/20 rounded-r-xl backdrop-blur-sm hover:from-muted/70 hover:to-muted/50 transition-all duration-300 hover:shadow-md relative overflow-hidden group/answer">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-muted/20 to-transparent opacity-0 group-hover/answer:opacity-100 transition-opacity duration-500"></div>
+                          <span className="relative z-10">{item.answer}</span>
                         </blockquote>
                       </div>
-                       <div>
-                        <h4 className="font-medium mb-2 text-muted-foreground">Feedback:</h4>
-                        <blockquote className="p-4 bg-accent/10 text-accent-foreground border-l-4 border-accent rounded-r-md">
-                            {item.feedback}
+                      <div className="transform transition-all duration-500 hover:scale-[1.01]">
+                        <h4 className="font-medium mb-3 text-muted-foreground flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-pink-500"></div>
+                          Feedback:
+                        </h4>
+                        <blockquote className="p-6 bg-gradient-to-br from-pink-500/10 to-blue-500/10 text-accent-foreground border-l-4 border-pink-500 rounded-r-xl backdrop-blur-sm hover:from-pink-500/20 hover:to-blue-500/20 transition-all duration-300 hover:shadow-md relative overflow-hidden group/feedback">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/20 to-transparent opacity-0 group-hover/feedback:opacity-100 transition-opacity duration-500"></div>
+                          <span className="relative z-10">{item.feedback}</span>
                         </blockquote>
                       </div>
                     </AccordionContent>
@@ -243,6 +352,29 @@ export default function InterviewResultsPage() {
           </Card>
         </div>
       </main>
+
+      {/* Enhanced Custom Styles */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(180deg); }
+        }
+        
+        .animate-bounce {
+          animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+          }
+          50% {
+            transform: none;
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          }
+        }
+      `}</style>
     </AppLayout>
   );
 }

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -124,83 +123,178 @@ export default function InterviewSetupPage() {
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8 bg-gray-50/50 dark:bg-slate-900">
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-gray-900 dark:text-white">New Mock Interview</CardTitle>
-              <CardDescription>
-                Select an interview round, provide the job role, and upload your resume.
-              </CardDescription>
+      <main className="flex-1 p-4 md:p-8 bg-gradient-to-br from-background via-background to-blue-500/5 min-h-screen">
+        {/* Enhanced Background with Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-pink-500/10 rounded-full blur-xl animate-pulse opacity-60"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-pink-500/10 to-blue-500/10 rounded-full blur-lg animate-bounce opacity-40" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-blue-500/15 to-pink-500/15 rounded-full blur-lg animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
+        </div>
+
+        <div className="max-w-3xl mx-auto relative z-10">
+          {/* Enhanced Header Section */}
+          <div className="text-center mb-12 transform transition-all duration-1000 hover:scale-105">
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-60 animate-pulse"></div>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent relative z-10 mb-4 animate-pulse">
+                Mock Interview
+              </h1>
+            </div>
+            <p className="text-xl text-muted-foreground font-medium">
+              Practice makes perfect. Let's get you <span className="text-blue-500 font-semibold">interview-ready!</span>
+            </p>
+          </div>
+
+          {/* Enhanced Main Card */}
+          <Card className="group relative overflow-hidden bg-gradient-to-br from-card/90 via-card to-blue-500/5 backdrop-blur-sm border-2 border-border/30 hover:border-blue-500/30 shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 transform hover:scale-[1.02] hover:-translate-y-2">
+            {/* Animated Background Pattern */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500"></div>
+            
+            {/* Floating Shine Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+
+            <CardHeader className="relative z-10 pb-8">
+              <div className="flex items-center gap-4 group-hover:translate-x-2 transition-transform duration-500">
+                <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-pink-500/10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <Briefcase className="h-8 w-8 text-blue-500 group-hover:text-pink-500 transition-colors duration-500" />
+                </div>
+                <div>
+                  <CardTitle className="text-3xl text-foreground group-hover:text-blue-500 transition-colors duration-500">
+                    New Mock Interview
+                  </CardTitle>
+                  <CardDescription className="text-lg mt-2">
+                    Select an interview round, provide the job role, and upload your resume.
+                  </CardDescription>
+                </div>
+              </div>
             </CardHeader>
-            <CardContent>
+
+            <CardContent className="relative z-10">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
                   
+                  {/* Enhanced Interview Round Selection */}
                   <FormField
                     control={form.control}
                     name="interviewRound"
                     render={({ field }) => (
-                      <FormItem className="space-y-3">
-                        <FormLabel className="text-base text-gray-900 dark:text-white">Select Interview Round</FormLabel>
+                      <FormItem className="space-y-6">
+                        <FormLabel className="text-xl font-semibold text-foreground flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                          Select Interview Round
+                        </FormLabel>
                         <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                            className="grid grid-cols-1 md:grid-cols-3 gap-6"
                           >
-                            {interviewRounds.map((round) => (
-                                <FormItem key={round.id}>
+                            {interviewRounds.map((round, index) => (
+                                <FormItem key={round.id} className="group/item">
                                     <FormControl>
                                         <RadioGroupItem value={round.id} id={round.id} className="peer sr-only" />
                                     </FormControl>
                                     <Label
-                                    htmlFor={round.id}
-                                    className={cn(
-                                        "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
-                                        "cursor-pointer"
-                                    )}
+                                      htmlFor={round.id}
+                                      className={cn(
+                                        "flex flex-col items-center justify-center rounded-2xl border-2 border-muted bg-gradient-to-br from-card to-muted/20 p-6 hover:bg-gradient-to-br hover:from-blue-500/5 hover:to-pink-500/5 hover:border-blue-500/50 peer-data-[state=checked]:border-blue-500 peer-data-[state=checked]:bg-gradient-to-br peer-data-[state=checked]:from-blue-500/10 peer-data-[state=checked]:to-pink-500/10 [&:has([data-state=checked])]:border-blue-500 transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 cursor-pointer group-hover:shadow-xl relative overflow-hidden"
+                                      )}
+                                      style={{ animationDelay: `${index * 0.1}s` }}
                                     >
-                                        <round.icon className="mb-3 h-6 w-6" />
-                                        {round.name}
-                                        <span className="text-xs text-muted-foreground mt-1 text-center">{round.description}</span>
+                                      {/* Animated background for selected state */}
+                                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-pink-500/5 opacity-0 peer-data-[state=checked]:opacity-100 transition-opacity duration-500"></div>
+                                      
+                                      <div className="relative z-10 flex flex-col items-center">
+                                        <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-pink-500/10 mb-4 group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-300">
+                                          <round.icon className="h-8 w-8 text-blue-500 group-hover/item:text-pink-500 transition-colors duration-300" />
+                                        </div>
+                                        <h3 className="font-bold text-lg mb-2 group-hover/item:text-blue-500 transition-colors duration-300">
+                                          {round.name}
+                                        </h3>
+                                        <p className="text-sm text-muted-foreground text-center leading-relaxed">
+                                          {round.description}
+                                        </p>
+                                      </div>
+                                      
+                                      {/* Shine effect on hover */}
+                                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent -skew-x-12 -translate-x-full group-hover/item:translate-x-full transition-transform duration-700 ease-out"></div>
                                     </Label>
                                 </FormItem>
                             ))}
                           </RadioGroup>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-pink-500" />
                       </FormItem>
                     )}
                   />
 
+                  {/* Enhanced Job Role Input */}
                   <FormField
                     control={form.control}
                     name="jobRole"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Job Role</FormLabel>
+                      <FormItem className="group/input">
+                        <FormLabel className="text-xl font-semibold flex items-center gap-2 group-hover/input:text-blue-500 transition-colors duration-300">
+                          <div className="w-2 h-2 rounded-full bg-pink-500"></div>
+                          Job Role
+                        </FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g., Senior Frontend Developer" {...field} />
+                          <div className="relative">
+                            <Input 
+                              placeholder="e.g., Senior Frontend Developer" 
+                              {...field} 
+                              className="h-14 text-lg border-2 bg-gradient-to-r from-background to-muted/20 hover:from-blue-500/5 hover:to-pink-500/5 focus:from-blue-500/10 focus:to-pink-500/10 border-border hover:border-blue-500/50 focus:border-blue-500 transition-all duration-500 transform hover:scale-[1.02] focus:scale-[1.02] shadow-lg hover:shadow-xl focus:shadow-2xl placeholder:text-muted-foreground/60"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-md pointer-events-none"></div>
+                          </div>
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-pink-500" />
                       </FormItem>
                     )}
                   />
+
+                  {/* Enhanced File Upload */}
                   <FormField
                     control={form.control}
                     name="resumeFile"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Your Resume</FormLabel>
+                      <FormItem className="group/upload">
+                        <FormLabel className="text-xl font-semibold flex items-center gap-2 group-hover/upload:text-pink-500 transition-colors duration-300">
+                          <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                          Your Resume
+                        </FormLabel>
                         <FormControl>
-                           <div className="flex items-center justify-center w-full">
-                                <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer bg-muted hover:bg-muted/80">
-                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                        <UploadCloud className="w-8 h-8 mb-4 text-muted-foreground" />
-                                        <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                                        <p className="text-xs text-muted-foreground">TXT, MD, or PDF (MAX. 2MB)</p>
+                           <div className="flex items-center justify-center w-full group-hover/upload:scale-[1.02] transition-transform duration-300">
+                                <label 
+                                  htmlFor="dropzone-file" 
+                                  className="flex flex-col items-center justify-center w-full h-56 border-2 border-dashed border-muted-foreground/30 rounded-2xl cursor-pointer bg-gradient-to-br from-muted/50 to-blue-500/5 hover:bg-gradient-to-br hover:from-blue-500/10 hover:to-pink-500/10 hover:border-blue-500/50 transition-all duration-500 transform hover:scale-[1.01] relative overflow-hidden group/dropzone"
+                                >
+                                    {/* Animated background */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 opacity-0 group-hover/dropzone:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6 relative z-10">
+                                        <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/10 to-pink-500/10 mb-6 group-hover/dropzone:scale-110 group-hover/dropzone:rotate-12 transition-all duration-500">
+                                          <UploadCloud className="w-12 h-12 text-blue-500 group-hover/dropzone:text-pink-500 transition-colors duration-500" />
+                                        </div>
+                                        <p className="mb-3 text-lg font-semibold text-foreground group-hover/dropzone:text-blue-500 transition-colors duration-300">
+                                          <span className="font-bold">Click to upload</span> or drag and drop
+                                        </p>
+                                        <p className="text-sm text-muted-foreground">TXT, MD, or PDF (MAX. 2MB)</p>
+                                        
+                                        {/* File selected indicator */}
+                                        {form.watch('resumeFile')?.[0]?.name && (
+                                          <div className="mt-4 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-pink-500/20 rounded-full border border-blue-500/30">
+                                            <p className="text-sm font-medium text-blue-600">
+                                              ✓ {form.watch('resumeFile')[0].name}
+                                            </p>
+                                          </div>
+                                        )}
                                     </div>
+
+                                    {/* Shine effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent -skew-x-12 -translate-x-full group-hover/dropzone:translate-x-full transition-transform duration-1000 ease-out"></div>
+                                    
                                     <Input 
                                         id="dropzone-file" 
                                         type="file" 
@@ -211,23 +305,95 @@ export default function InterviewSetupPage() {
                                 </label>
                             </div> 
                         </FormControl>
-                         <FormDescription>
-                          {form.watch('resumeFile')?.[0]?.name ? `Selected file: ${form.watch('resumeFile')[0].name}` : 'Your resume helps us create relevant questions.'}
+                         <FormDescription className="text-center text-base">
+                          {form.watch('resumeFile')?.[0]?.name 
+                            ? `✅ Selected: ${form.watch('resumeFile')[0].name}` 
+                            : 'Your resume helps us create relevant questions tailored to your experience.'}
                         </FormDescription>
-                        <FormMessage />
+                        <FormMessage className="text-pink-500" />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" disabled={isPending}>
-                    {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {isPending ? "Generating Questions..." : "Start Interview"}
-                  </Button>
+
+                  {/* Enhanced Submit Button */}
+                  <div className="pt-6">
+                    <Button 
+                      type="submit" 
+                      className="w-full h-16 text-lg font-bold relative overflow-hidden group bg-gradient-to-r from-blue-500 to-pink-500 hover:from-pink-500 hover:to-blue-500 disabled:from-muted disabled:to-muted transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/25 disabled:hover:scale-100 disabled:hover:shadow-none" 
+                      disabled={isPending}
+                    >
+                      {/* Button shine effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      
+                      <span className="relative z-10 flex items-center justify-center gap-3">
+                        {isPending && <Loader2 className="h-6 w-6 animate-spin" />}
+                        {isPending ? (
+                          <>
+                            <span>Generating Questions...</span>
+                            <div className="flex space-x-1">
+                              {[0, 1, 2].map((i) => (
+                                <div 
+                                  key={i}
+                                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                                  style={{ animationDelay: `${i * 0.1}s` }}
+                                />
+                              ))}
+                            </div>
+                          </>
+                        ) : (
+                          "🚀 Start Interview"
+                        )}
+                      </span>
+
+                      {/* Animated border */}
+                      <div className="absolute inset-0 rounded-md bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
+                    </Button>
+                  </div>
                 </form>
               </Form>
             </CardContent>
           </Card>
+
+          {/* Floating Action Indicators */}
+          <div className="flex justify-center mt-8 space-x-4">
+            {['Select Round', 'Enter Role', 'Upload Resume', 'Start!'].map((step, index) => (
+              <div 
+                key={step}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-pink-500/10 border border-blue-500/20 backdrop-blur-sm transform hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <div className={`w-3 h-3 rounded-full ${
+                  index === 0 ? 'bg-blue-500' : 
+                  index === 1 ? 'bg-pink-500' : 
+                  index === 2 ? 'bg-blue-500' : 'bg-pink-500'
+                } animate-pulse`}></div>
+                <span className="text-sm font-medium text-muted-foreground">{step}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </main>
+
+      {/* Enhanced Custom Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
     </AppLayout>
   );
 }

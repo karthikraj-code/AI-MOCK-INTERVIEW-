@@ -199,14 +199,14 @@ const InterviewTipsCarousel = () => {
   const IconComponent = tips[currentTip].icon;
 
   return (
-    <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50">
+    <div className="bg-white/95 backdrop-blur-md p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
           <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400">Interview Tips</div>
+        <div className="text-sm text-gray-600">Interview Tips</div>
       </div>
       
       <div className="space-y-4 xs:space-y-6">
@@ -215,16 +215,16 @@ const InterviewTipsCarousel = () => {
             <IconComponent className="h-5 w-5 xs:h-6 xs:w-6 text-white" />
           </div>
           <div className="flex-1">
-            <div className="text-xs xs:text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">
+            <div className="text-xs xs:text-sm font-medium text-blue-600 mb-1">
               Pro Tip #{currentTip + 1}
             </div>
-            <div className="text-base xs:text-lg font-bold text-gray-900 dark:text-white transition-all duration-300">
+            <div className="text-base xs:text-lg font-bold text-gray-900 transition-all duration-300">
               {tips[currentTip].title}
             </div>
           </div>
         </div>
         
-        <p className="text-sm xs:text-base text-gray-700 dark:text-gray-300 leading-relaxed transition-all duration-300">
+        <p className="text-sm xs:text-base text-gray-700 leading-relaxed transition-all duration-300">
           {tips[currentTip].description}
         </p>
         
@@ -236,14 +236,14 @@ const InterviewTipsCarousel = () => {
               className={`h-2 rounded-full transition-all duration-300 ${
                 index === currentTip 
                   ? 'w-8 bg-gradient-to-r from-blue-500 to-purple-500' 
-                  : 'w-2 bg-gray-300 dark:bg-gray-600'
+                  : 'w-2 bg-gray-300'
               }`}
             />
           ))}
         </div>
         
         {/* Tip counter */}
-        <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex justify-between items-center text-sm text-gray-600">
           <span>Interactive Tips</span>
           <span>{currentTip + 1} of {tips.length}</span>
         </div>
@@ -295,7 +295,7 @@ const FeaturesCarousel = ({ handleSignIn }: { handleSignIn: () => void }) => {
             className={`h-3 rounded-full transition-all duration-300 ${
               index === currentGroup 
                 ? 'w-12 bg-gradient-to-r from-blue-500 to-purple-500' 
-                : 'w-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                : 'w-3 bg-gray-300 hover:bg-gray-400'
             }`}
           />
         ))}
@@ -311,16 +311,16 @@ const FeaturesCarousel = ({ handleSignIn }: { handleSignIn: () => void }) => {
             
             // Gradient backgrounds for variety
             const gradientBgs = [
-              'from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20',
-              'from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20',
-              'from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20',
-              'from-orange-50 to-red-100 dark:from-orange-900/20 dark:to-red-900/20',
-              'from-teal-50 to-cyan-100 dark:from-teal-900/20 dark:to-cyan-900/20',
-              'from-rose-50 to-pink-100 dark:from-rose-900/20 dark:to-pink-900/20',
-              'from-violet-50 to-purple-100 dark:from-violet-900/20 dark:to-purple-900/20',
-              'from-amber-50 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20',
-              'from-emerald-50 to-green-100 dark:from-emerald-900/20 dark:to-green-900/20',
-              'from-sky-50 to-blue-100 dark:from-sky-900/20 dark:to-blue-900/20'
+              'from-blue-50 to-indigo-100',
+              'from-purple-50 to-pink-100',
+              'from-green-50 to-emerald-100',
+              'from-orange-50 to-red-100',
+              'from-teal-50 to-cyan-100',
+              'from-rose-50 to-pink-100',
+              'from-violet-50 to-purple-100',
+              'from-amber-50 to-orange-100',
+              'from-emerald-50 to-green-100',
+              'from-sky-50 to-blue-100'
             ];
 
             // Rotation angles for variety
@@ -355,12 +355,12 @@ const FeaturesCarousel = ({ handleSignIn }: { handleSignIn: () => void }) => {
                       <div className="absolute inset-0 bg-white/30 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                       <IconComponent className="h-6 w-6 text-white relative z-10" />
                     </div>
-                    <CardTitle className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 mb-2">
+                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2">
                       {feature.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="relative z-10 p-4">
-                    <CardDescription className="text-gray-700 dark:text-gray-300 mb-6 text-base leading-relaxed">
+                    <CardDescription className="text-gray-700 mb-6 text-base leading-relaxed">
                       {feature.description}
                     </CardDescription>
                     <Button 
@@ -437,7 +437,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-8">
         {/* Video Background */}
@@ -454,7 +454,7 @@ export default function LandingPage() {
             Your browser does not support the video tag.
           </video>
           {/* Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-black/80 dark:bg-black/85"></div>
+          <div className="absolute inset-0 bg-black/80"></div>
         </div>
         
         <FloatingOrbs />
@@ -475,7 +475,7 @@ export default function LandingPage() {
                   </span>
                 </div>
                 
-                <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 rounded-full bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 text-white text-xs xs:text-sm font-medium mb-4 sm:mb-6">
+                <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs xs:text-sm font-medium mb-4 sm:mb-6">
                   <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-white" />
                   AI-Powered Interview Training
                 </div>
@@ -541,22 +541,22 @@ export default function LandingPage() {
       </div>
 
       {/* Features Section */}
-      <div className="py-24 bg-white dark:bg-slate-900 relative">
+      <div className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-20 transition-all duration-1000 ${
             featuresInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-6">
               <Zap className="w-4 h-4 mr-2" />
               Powerful Features
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Everything You Need to
               <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Excel in Interviews
               </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive platform provides cutting-edge tools and resources designed to help you succeed in any interview scenario.
             </p>
           </div>
