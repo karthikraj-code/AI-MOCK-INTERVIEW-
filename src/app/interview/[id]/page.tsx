@@ -247,7 +247,7 @@ export default function InterviewPage() {
   if (!interviewData) {
     return (
       <AppLayout>
-        <main className="flex-1 p-4 md:p-8 flex items-center justify-center min-h-screen">
+        <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-screen">
           <div className="text-center space-y-4">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-xl opacity-20 animate-pulse scale-150"></div>
@@ -379,14 +379,14 @@ export default function InterviewPage() {
         }
       `}</style>
 
-      <main className="flex-1 p-4 md:p-8 flex items-center justify-center min-h-screen relative overflow-hidden">
+      <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-screen relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 -z-10"></div>
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl -z-10"></div>
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl -z-10"></div>
 
         <FloatingElement delay={0} className="w-full max-w-6xl">
-          <Card className="w-full card-3d animate-in fade-in-50 duration-500 grid md:grid-cols-2 border-0 shadow-2xl overflow-hidden">
+          <Card className="w-full max-w-6xl card-3d animate-in fade-in-50 duration-500 grid lg:grid-cols-2 border-0 shadow-2xl overflow-hidden">
             {/* Interviewer Side */}
             <div className="p-8 flex flex-col items-center justify-center interviewer-card relative">
               {/* Status indicators */}

@@ -123,7 +123,7 @@ export default function InterviewSetupPage() {
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8 bg-gradient-to-br from-background via-background to-blue-500/5 min-h-screen">
+      <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 bg-gradient-to-br from-background via-background to-blue-500/5 min-h-screen">
         {/* Enhanced Background with Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-pink-500/10 rounded-full blur-xl animate-pulse opacity-60"></div>
@@ -131,16 +131,16 @@ export default function InterviewSetupPage() {
           <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-blue-500/15 to-pink-500/15 rounded-full blur-lg animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        <div className="max-w-3xl mx-auto relative z-10">
+        <div className="max-w-4xl mx-auto relative z-10">
           {/* Enhanced Header Section */}
-          <div className="text-center mb-12 transform transition-all duration-1000 hover:scale-105">
+          <div className="text-center mb-8 sm:mb-12 transform transition-all duration-1000 hover:scale-105">
             <div className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-60 animate-pulse"></div>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent relative z-10 mb-4 animate-pulse">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent relative z-10 mb-3 sm:mb-4 animate-pulse">
                 Mock Interview
               </h1>
             </div>
-            <p className="text-xl text-muted-foreground font-medium">
+            <p className="text-lg sm:text-xl text-muted-foreground font-medium px-4">
               Practice makes perfect. Let's get you <span className="text-blue-500 font-semibold">interview-ready!</span>
             </p>
           </div>
@@ -154,25 +154,25 @@ export default function InterviewSetupPage() {
             {/* Floating Shine Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
 
-            <CardHeader className="relative z-10 pb-8">
-              <div className="flex items-center gap-4 group-hover:translate-x-2 transition-transform duration-500">
+            <CardHeader className="relative z-10 pb-6 sm:pb-8 p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 group-hover:translate-x-2 transition-transform duration-500">
                 <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-pink-500/10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                  <Briefcase className="h-8 w-8 text-blue-500 group-hover:text-pink-500 transition-colors duration-500" />
+                  <Briefcase className="h-6 w-6 sm:h-8 sm:w-8 text-blue-500 group-hover:text-pink-500 transition-colors duration-500" />
                 </div>
                 <div>
-                  <CardTitle className="text-3xl text-foreground group-hover:text-blue-500 transition-colors duration-500">
+                  <CardTitle className="text-2xl sm:text-3xl text-foreground group-hover:text-blue-500 transition-colors duration-500">
                     New Mock Interview
                   </CardTitle>
-                  <CardDescription className="text-lg mt-2">
+                  <CardDescription className="text-base sm:text-lg mt-2">
                     Select an interview round, provide the job role, and upload your resume.
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
 
-            <CardContent className="relative z-10">
+            <CardContent className="relative z-10 p-4 sm:p-6">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 sm:space-y-10">
                   
                   {/* Enhanced Interview Round Selection */}
                   <FormField
@@ -180,7 +180,7 @@ export default function InterviewSetupPage() {
                     name="interviewRound"
                     render={({ field }) => (
                       <FormItem className="space-y-6">
-                        <FormLabel className="text-xl font-semibold text-foreground flex items-center gap-2">
+                        <FormLabel className="text-lg sm:text-xl font-semibold text-foreground flex items-center gap-2">
                           <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                           Select Interview Round
                         </FormLabel>
@@ -188,7 +188,7 @@ export default function InterviewSetupPage() {
                           <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
                           >
                             {interviewRounds.map((round, index) => (
                                 <FormItem key={round.id} className="group/item">

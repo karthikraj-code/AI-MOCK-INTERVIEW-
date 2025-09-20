@@ -43,21 +43,21 @@ interface StatCardProps {
 const StatCard = ({ icon, title, value, description, gradient }: StatCardProps) => (
     <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer">
         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-500`}></div>
-        <CardContent className="p-6 relative z-10">
-            <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+        <CardContent className="p-4 sm:p-6 relative z-10">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className={`p-2 sm:p-3 rounded-xl bg-gradient-to-br ${gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <div className="text-white">
                         {icon}
                     </div>
                 </div>
                 <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900 group-hover:scale-105 transition-transform duration-300">
+                    <div className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:scale-105 transition-transform duration-300">
                         {value}
                     </div>
                 </div>
             </div>
-            <h3 className="font-semibold text-gray-800 mb-1">{title}</h3>
-            <p className="text-sm text-gray-600">{description}</p>
+            <h3 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">{title}</h3>
+            <p className="text-xs sm:text-sm text-gray-600">{description}</p>
         </CardContent>
     </Card>
 );
@@ -173,7 +173,7 @@ export default function DashboardPage() {
                 </div>
             </div>
 
-            <div className="relative z-10 p-4 md:p-8 space-y-8">
+            <div className="relative z-10 p-3 sm:p-4 md:p-6 lg:p-8 space-y-6 sm:space-y-8">
                 {/* Enhanced Welcome Section */}
                 <div 
                     className="relative overflow-hidden rounded-2xl p-8 shadow-xl"
@@ -184,21 +184,22 @@ export default function DashboardPage() {
                 >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 animate-shimmer"></div>
                     
-                    <div className="flex items-center justify-between relative z-10">
-                        <div className="flex items-center gap-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between relative z-10 gap-4 sm:gap-6">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                             <WelcomeBot />
                             <div className="space-y-2">
-                                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                                     Welcome back Champ, {userName}! 👋
                                 </h1>
-                                <p className="text-lg text-primary/80">
+                                <p className="text-base sm:text-lg text-primary/80">
                                     Ready for your next interview session? Let's make it count!
                                 </p>
                             </div>
                         </div>
                         <Link href="/interview/setup" passHref>
-                            <Button className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full p-4 h-auto shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110">
-                                <Sparkles className="h-7 w-7 group-hover:rotate-180 transition-transform duration-700"/>
+                            <Button className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground rounded-full p-3 sm:p-4 h-auto shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-110 w-full sm:w-auto">
+                                <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 group-hover:rotate-180 transition-transform duration-700"/>
+                                <span className="ml-2 sm:hidden">Start Interview</span>
                             </Button>
                         </Link>
                     </div>
@@ -213,7 +214,7 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     {stats.map((stat, index) => (
                         <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                             <StatCard {...stat} />
@@ -222,37 +223,37 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 sm:gap-8 lg:grid-cols-3">
                     {/* Recent Performance - Enhanced */}
                     <Card className="lg:col-span-2 relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500">
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50"></div>
-                        <CardHeader className="flex flex-row items-center justify-between relative z-10">
+                        <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between relative z-10 gap-3 sm:gap-0">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 shadow-lg">
-                                    <BarChart className="w-5 h-5 text-white" />
+                                    <BarChart className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                 </div>
-                                <CardTitle className="text-xl font-bold text-primary">Recent Performance</CardTitle>
+                                <CardTitle className="text-lg sm:text-xl font-bold text-primary">Recent Performance</CardTitle>
                             </div>
                             <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                 <TrendingUp className="w-4 h-4" />
                                 {pastInterviews.length} sessions
                             </div>
                         </CardHeader>
-                        <CardContent className="min-h-[200px] relative z-10">
+                        <CardContent className="min-h-[180px] sm:min-h-[200px] relative z-10 p-4 sm:p-6">
                             {pastInterviews.length > 0 ? (
                                 <div className="space-y-3">
                                 {pastInterviews.slice(0, 3).map((interview, index) => (
                                     <Link href={`/interview/${interview.id}/results`} key={interview.id} passHref>
-                                        <div className="group flex items-center justify-between p-4 rounded-xl hover:bg-white/70 cursor-pointer border border-transparent hover:border-primary/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg backdrop-blur-sm">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center text-primary font-bold">
+                                        <div className="group flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 rounded-xl hover:bg-white/70 cursor-pointer border border-transparent hover:border-primary/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg backdrop-blur-sm gap-3 sm:gap-0">
+                                            <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center text-primary font-bold text-sm sm:text-base">
                                                     {index + 1}
                                                 </div>
-                                                <div>
-                                                    <p className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300">
+                                                <div className="flex-1 sm:flex-none">
+                                                    <p className="font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 text-sm sm:text-base">
                                                         {interview.jobRole}
                                                     </p>
-                                                    <p className="text-sm text-muted-foreground">
+                                                    <p className="text-xs sm:text-sm text-muted-foreground">
                                                         {new Date(interview.date).toLocaleDateString('en-US', { 
                                                             month: 'short', 
                                                             day: 'numeric',
@@ -294,12 +295,12 @@ export default function DashboardPage() {
                         <CardHeader className="flex flex-row items-center justify-between relative z-10">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <Lightbulb className="w-5 h-5 text-white" />
+                                    <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                 </div>
-                                <CardTitle className="text-xl font-bold text-primary">Video Analysis</CardTitle>
+                                <CardTitle className="text-lg sm:text-xl font-bold text-primary">Video Analysis</CardTitle>
                             </div>
                         </CardHeader>
-                        <CardContent className="flex flex-col items-center justify-center text-center min-h-[200px] gap-6 relative z-10">
+                        <CardContent className="flex flex-col items-center justify-center text-center min-h-[180px] sm:min-h-[200px] gap-4 sm:gap-6 relative z-10 p-4 sm:p-6">
                             <div className="space-y-4">
                                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-500">
                                     <PlayCircle className="h-8 w-8 text-yellow-600" />

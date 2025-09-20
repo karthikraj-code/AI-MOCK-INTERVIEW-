@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetDescription, SheetTrigger } from "@/components/ui/sheet";
 import { Chatbot } from "./chatbot/chatbot";
 
 const CareerCompassLogo = () => (
@@ -108,18 +108,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   const NavContent = () => (
-    <nav className="flex flex-col gap-4 text-lg font-medium">
+    <nav className="flex flex-col gap-2 sm:gap-4 text-base sm:text-lg font-medium">
       {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
           onClick={() => setIsMobileMenuOpen(false)}
-          className={`flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary ${
+          className={`flex items-center gap-2 sm:gap-3 rounded-lg px-2 sm:px-3 py-2 text-muted-foreground transition-all hover:text-primary ${
             isActive(link.href, link.activePaths) ? "bg-muted text-primary font-semibold" : ""
           }`}
         >
-          <link.icon className="h-4 w-4" />
-          {link.label}
+          <link.icon className="h-4 w-4 flex-shrink-0" />
+          <span className="truncate">{link.label}</span>
         </Link>
       ))}
     </nav>
@@ -127,16 +127,16 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <div className={`grid min-h-screen w-full transition-all duration-300 ${
+    <div className={`grid min-h-screen w-full max-w-full transition-all duration-300 ${
       isSidebarOpen 
-        ? 'md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]' 
-        : 'md:grid-cols-[0_1fr] lg:grid-cols-[0_1fr]'
+        ? 'lg:grid-cols-[220px_1fr] xl:grid-cols-[280px_1fr]' 
+        : 'lg:grid-cols-[0_1fr] xl:grid-cols-[0_1fr]'
     }`}>
-       <div className={`hidden border-r bg-muted/40 md:block transition-all duration-300 ${
+       <div className={`hidden border-r bg-muted/40 lg:block transition-all duration-300 ${
          isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
        }`}>
         <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+          <div className="flex h-12 sm:h-14 items-center border-b px-3 sm:px-4 lg:h-[60px] lg:px-6">
             <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
               <CareerCompassLogo />
             </Link>
@@ -147,16 +147,19 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
       <div className="flex flex-col">
-          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+          <header className="flex h-12 sm:h-14 items-center gap-3 sm:gap-4 border-b bg-muted/40 px-3 sm:px-4 lg:h-[60px] lg:px-6">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+                <Button variant="outline" size="icon" className="shrink-0 lg:hidden">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="flex flex-col p-0">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                  Mobile navigation menu for accessing different sections of the application
+                </SheetDescription>
                  <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6 mb-4">
                    <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
                       <CareerCompassLogo />
@@ -172,7 +175,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <Button 
               variant="outline" 
               size="icon" 
-              className="shrink-0 hidden md:flex"
+              className="shrink-0 hidden lg:flex"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             >
               {isSidebarOpen ? (
@@ -227,7 +230,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 bg-background overflow-auto">
+          <main className="flex flex-1 flex-col gap-3 sm:gap-4 p-3 sm:p-4 lg:gap-6 lg:p-6 bg-background overflow-auto">
             {children}
           </main>
           <Chatbot section={getCurrentSection()} />

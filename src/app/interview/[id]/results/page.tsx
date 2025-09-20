@@ -154,7 +154,7 @@ export default function InterviewResultsPage() {
   if (isLoading || !results) {
     return (
       <AppLayout>
-        <main className="flex-1 p-4 md:p-8 flex flex-col items-center justify-center gap-4 min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+        <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center gap-4 min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-pink-500/20 to-blue-500/20 rounded-full blur-xl animate-pulse"></div>
             <Loader2 className="h-16 w-16 animate-spin text-primary relative z-10 drop-shadow-lg" style={{ 
@@ -190,10 +190,10 @@ export default function InterviewResultsPage() {
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8 bg-gradient-to-br from-background via-background to-muted/10">
+      <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 bg-gradient-to-br from-background via-background to-muted/10">
         {/* Enhanced Header with Parallax Effect */}
         <div 
-          className="flex flex-col md:flex-row md:items-center md:justify-between mb-12 gap-6 relative overflow-hidden rounded-2xl p-8 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 backdrop-blur-sm border border-border/50"
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-12 gap-6 relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 backdrop-blur-sm border border-border/50"
           style={{
             background: 'linear-gradient(135deg, rgb(59 130 246)/0.05 0%, rgb(236 72 153)/0.05 50%, rgb(59 130 246)/0.05 100%)',
             boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.12)'
@@ -201,7 +201,7 @@ export default function InterviewResultsPage() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent -skew-x-12 animate-pulse opacity-30"></div>
           <div className="relative z-10 transform transition-transform duration-500 hover:scale-105">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
               Interview Results
             </h1>
             <p className="text-muted-foreground text-lg mt-2 font-medium">
@@ -219,7 +219,7 @@ export default function InterviewResultsPage() {
           </Link>
         </div>
         
-        <div className="grid gap-8 lg:grid-cols-5">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-5">
           {/* Enhanced Scores Card */}
           <Card className="lg:col-span-5 group relative overflow-hidden bg-gradient-to-br from-card via-card to-blue-500/5 hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] border-border/50">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-pink-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

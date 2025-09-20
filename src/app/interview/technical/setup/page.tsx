@@ -60,33 +60,33 @@ export default function TechnicalInterviewSetupPage() {
 
   return (
     <AppLayout>
-      <main className="flex-1 p-4 md:p-8 flex items-center justify-center">
-        <div className="max-w-2xl mx-auto">
+      <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8 flex items-center justify-center min-h-screen">
+        <div className="w-full max-w-2xl mx-auto px-4 sm:px-0">
           <Card>
-            <CardHeader>
+            <CardHeader className="p-4 sm:p-6">
                 <div className="flex items-center gap-2">
-                    <BrainCircuit className="h-6 w-6 text-primary" />
-                    <CardTitle className="text-2xl">Mock Technical Interview Setup</CardTitle>
+                    <BrainCircuit className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                    <CardTitle className="text-xl sm:text-2xl">Mock Technical Interview Setup</CardTitle>
                 </div>
-              <CardDescription>
+              <CardDescription className="text-sm sm:text-base">
                 Choose your topic and experience level to start the simulated technical interview.
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
                   
                   <FormField
                     control={form.control}
                     name="topic"
                     render={({ field }) => (
                       <FormItem className="space-y-3">
-                        <FormLabel className="text-base font-semibold">Select Interview Topic</FormLabel>
+                        <FormLabel className="text-sm sm:text-base font-semibold">Select Interview Topic</FormLabel>
                          <FormControl>
                           <RadioGroup
                             onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="grid grid-cols-2 md:grid-cols-3 gap-4"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
                           >
                             {topics.map((topic) => (
                                 <FormItem key={topic.id}>
@@ -96,12 +96,12 @@ export default function TechnicalInterviewSetupPage() {
                                     <Label
                                     htmlFor={topic.id}
                                     className={cn(
-                                        "flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-4 h-28 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
+                                        "flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-3 sm:p-4 h-24 sm:h-28 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary",
                                         "cursor-pointer"
                                     )}
                                     >
-                                        <topic.icon className="mb-2 h-6 w-6" />
-                                        <span className="text-sm font-medium text-center">{topic.name}</span>
+                                        <topic.icon className="mb-2 h-5 w-5 sm:h-6 sm:w-6" />
+                                        <span className="text-xs sm:text-sm font-medium text-center leading-tight">{topic.name}</span>
                                     </Label>
                                 </FormItem>
                             ))}
@@ -117,7 +117,7 @@ export default function TechnicalInterviewSetupPage() {
                     name="experienceLevel"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base font-semibold">Select Your Experience Level</FormLabel>
+                        <FormLabel className="text-sm sm:text-base font-semibold">Select Your Experience Level</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
