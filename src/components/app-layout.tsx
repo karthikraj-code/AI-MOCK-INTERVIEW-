@@ -127,7 +127,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <div className={`grid min-h-screen w-full max-w-full overflow-x-hidden transition-all duration-300 ${
+    <div className={`grid min-h-screen w-full max-w-full transition-all duration-300 ${
       isSidebarOpen 
         ? 'lg:grid-cols-[220px_1fr] xl:grid-cols-[280px_1fr]' 
         : 'lg:grid-cols-[0_1fr] xl:grid-cols-[0_1fr]'
@@ -230,7 +230,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="flex flex-1 flex-col gap-3 sm:gap-4 p-3 sm:p-4 lg:gap-6 lg:p-6 bg-background overflow-auto max-w-full overflow-x-hidden">
+          <main className="flex flex-1 flex-col gap-3 sm:gap-4 p-3 sm:p-4 lg:gap-6 lg:p-6 bg-background overflow-auto max-w-full">
             {children}
           </main>
           <Chatbot section={getCurrentSection()} />

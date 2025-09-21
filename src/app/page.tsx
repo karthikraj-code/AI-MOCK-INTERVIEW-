@@ -199,7 +199,7 @@ const InterviewTipsCarousel = () => {
   const IconComponent = tips[currentTip].icon;
 
   return (
-    <div className="bg-white/95 backdrop-blur-md p-3 xs:p-4 sm:p-6 lg:p-8 rounded-xl xs:rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20">
+    <div className="bg-white/95 backdrop-blur-md p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 max-w-full mx-2 sm:mx-4">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -439,7 +439,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden pt-8">
+      <div className="relative overflow-hidden pt-8 px-2 sm:px-4 hero-section">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
@@ -459,7 +459,7 @@ export default function LandingPage() {
         
         <FloatingOrbs />
         
-        <div ref={heroRef} className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24 relative z-10">
+        <div ref={heroRef} className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 lg:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
@@ -522,17 +522,17 @@ export default function LandingPage() {
             <div className={`relative transition-all duration-1000 delay-200 ${
               heroInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}>
-              <div className="relative">
+              <div className="relative p-4 sm:p-6 interview-tips-container">
                 {/* Interview Tips Carousel */}
                 <InterviewTipsCarousel />
                 
-                {/* Floating elements */}
-                <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 bg-gradient-to-r from-blue-500 to-purple-500 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg animate-bounce">
-                  <TrendingUp className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+                {/* Floating elements - positioned within safe bounds */}
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-gradient-to-r from-blue-500 to-purple-500 p-2 sm:p-3 rounded-xl sm:rounded-2xl shadow-lg animate-bounce">
+                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
                 
-                <div className="absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 bg-gradient-to-r from-pink-500 to-orange-500 p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg animate-pulse">
-                  <Target className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+                <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 bg-gradient-to-r from-pink-500 to-orange-500 p-2 sm:p-3 rounded-xl sm:rounded-2xl shadow-lg animate-pulse">
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </div>
               </div>
             </div>
