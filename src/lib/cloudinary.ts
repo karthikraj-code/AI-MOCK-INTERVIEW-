@@ -58,4 +58,80 @@ export function dataUriToFile(dataUri: string, defaultFileName = 'recording.webm
   return new File([byteArray], fileName, { type: mime });
 }
 
+/**
+ * Compresses a video file to reduce its size for API uploads
+ */
+export async function compressVideo(file: File, maxSizeMB = 10): Promise<File> {
+  // If file is already small enough, return as is
+  if (file.size <= maxSizeMB * 1024 * 1024) {
+    return file;
+  }
+
+  return new Promise((resolve, reject) => {
+    const video = document.createElement('video');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    if (!ctx) {
+      reject(new Error('Canvas context not available'));
+      return;
+    }
+
+    video.onloadedmetadata = () => {
+      // Calculate new dimensions (reduce by 50% if too large)
+      const scale = Math.min(1, Math.sqrt((maxSizeMB * 1024 * 1024) / file.size));
+      canvas.width = video.videoWidth * scale;
+      canvas.height = video.videoHeight * scale;
+      
+      // Create a new video element for recording
+      const compressedVideo = document.createElement('video');
+      const stream = canvas.captureStream(30); // 30 FPS
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'video/webm;codecs=vp8',
+        videoBitsPerSecond: 1000000 // 1 Mbps
+      });
+      
+      const chunks: Blob[] = [];
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) {
+          chunks.push(e.data);
+        }
+      };
+      
+      mediaRecorder.onstop = () => {
+        const compressedBlob = new Blob(chunks, { type: 'video/webm' });
+        const compressedFile = new File([compressedBlob], file.name, { type: 'video/webm' });
+        resolve(compressedFile);
+      };
+      
+      // Start recording
+      mediaRecorder.start();
+      
+      // Play video to capture frames
+      video.play();
+      
+      // Stop recording after video ends
+      video.onended = () => {
+        mediaRecorder.stop();
+      };
+      
+      // Draw video frames to canvas
+      const drawFrame = () => {
+        if (!video.paused && !video.ended) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          requestAnimationFrame(drawFrame);
+        }
+      };
+      drawFrame();
+    };
+    
+    video.onerror = () => {
+      reject(new Error('Failed to load video for compression'));
+    };
+    
+    video.src = URL.createObjectURL(file);
+    video.load();
+  });
+}
+
 

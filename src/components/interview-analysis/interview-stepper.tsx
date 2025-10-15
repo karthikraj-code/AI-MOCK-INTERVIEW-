@@ -6,7 +6,7 @@ import InterviewView from './interview-view';
 import AnalysisScreen from './analysis-screen';
 import ReportView from './report/report-view';
 import { useMediaRecorder } from '@/hooks/use-media-recorder';
-import { uploadVideoToCloudinary, dataUriToFile } from '@/lib/cloudinary';
+import { uploadVideoToCloudinary, dataUriToFile, compressVideo } from '@/lib/cloudinary';
 import { getInterviewAnalysis } from '@/lib/interview-analysis/actions';
 import type { AnalysisResult } from '@/lib/interview-analysis/types';
 import { useToast } from '@/hooks/use-toast';
@@ -81,12 +81,41 @@ export default function InterviewStepper() {
     let videoReference = dataUri;
     try {
       // Convert data URI to a File with the proper MIME and extension
-      const file = dataUriToFile(dataUri);
-      const url = await uploadVideoToCloudinary(file);
-      videoReference = url;
+      let file = dataUriToFile(dataUri);
+      
+      // Compress video if it's too large (over 5MB for data URI fallback)
+      if (file.size > 5 * 1024 * 1024) {
+        console.log('Video is large, compressing...');
+        file = await compressVideo(file, 5); // Compress to max 5MB for data URI
+      }
+      
+      // Try to upload to Cloudinary first
+      try {
+        const url = await uploadVideoToCloudinary(file);
+        videoReference = url;
+        console.log('Video uploaded successfully to Cloudinary');
+      } catch (cloudinaryError) {
+        console.warn('Cloudinary upload failed, using compressed data URI:', cloudinaryError);
+        // If Cloudinary fails, use the compressed data URI as fallback
+        const compressedDataUri = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        videoReference = compressedDataUri;
+        console.log('Using compressed data URI as fallback');
+      }
     } catch (e) {
-      // If upload fails, fall back to sending data URI (may hit size limits on some hosts)
-      console.warn('Cloud upload failed, falling back to data URI for analysis:', e);
+      // If everything fails, show error
+      console.error('Video processing failed:', e);
+      toast({
+        title: "Video Processing Failed",
+        description: "Could not process video for analysis. Please try recording a shorter video.",
+        variant: "destructive",
+      });
+      setStep('error');
+      return;
     }
 
     const result = await getInterviewAnalysis(videoReference);

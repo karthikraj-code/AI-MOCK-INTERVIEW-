@@ -51,7 +51,7 @@ const prompt = ai.definePrompt({
 
   Your response MUST be a JSON object that strictly follows the defined output schema.
   `,
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const analyzeResumeFlow = ai.defineFlow(

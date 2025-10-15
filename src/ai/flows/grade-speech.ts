@@ -52,7 +52,7 @@ const prompt = ai.definePrompt({
   "{{{transcript}}}"
   
   Your response MUST be a JSON object matching the defined schema.`,
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const gradeSpeechFlow = ai.defineFlow(

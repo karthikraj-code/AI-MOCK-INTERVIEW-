@@ -66,7 +66,7 @@ const prompt = ai.definePrompt({
   {{/if}}
 
   Questions:`,
-  model: 'googleai/gemini-1.5-flash-latest',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const generateInterviewQuestionsFlow = ai.defineFlow(

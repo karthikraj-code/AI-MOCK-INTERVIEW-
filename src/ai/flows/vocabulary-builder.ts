@@ -37,7 +37,7 @@ const prompt = ai.definePrompt({
   The words should be moderately advanced but practical for everyday business communication. Avoid overly obscure or technical jargon unless it's broadly applicable.
   
   Your response MUST be a JSON object containing a key "words" which is an array of 3 word objects.`,
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const vocabularyBuilderFlow = ai.defineFlow(

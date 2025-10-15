@@ -34,10 +34,19 @@ export async function getInterviewAnalysis(
   try {
     const isHttpUrl = videoReference.startsWith('http://') || videoReference.startsWith('https://');
     const isDataUri = videoReference.startsWith('data:');
+    
+    // Prefer HTTP URLs over data URIs to avoid size limits
+    if (!isHttpUrl && !isDataUri) {
+      return { error: 'Invalid video reference. Expected HTTP URL or data URI.' };
+    }
+    
+    // For data URIs, check if they're too large (over 5MB base64)
+    if (isDataUri && videoReference.length > 7 * 1024 * 1024) { // ~5MB in base64
+      return { error: 'Video file is too large for analysis. Please try recording a shorter video.' };
+    }
+    
     // Build a safe reference for the AI media placeholder
-    const videoForAi = isHttpUrl || isDataUri
-      ? videoReference
-      : `data:video/webm;base64,${sanitizeBase64Data(videoReference)}`;
+    const videoForAi = videoReference;
     
     // The main idea of chunking would be to get an array of data URIs.
     // For this implementation, we will simulate the parallel nature

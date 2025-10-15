@@ -55,7 +55,7 @@ Transcription:
 
 Based on your analysis, provide a score (0-100) for clarity, a count of filler words, the overall sentiment, and the pace in words per minute. Be succinct and professional in your feedback.
 `,
-  model: 'googleai/gemini-1.5-flash-latest',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const analyzeSpeechFlow = ai.defineFlow(

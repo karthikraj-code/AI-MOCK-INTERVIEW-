@@ -76,7 +76,7 @@ Your task is to generate ONE technical interview question at a time. The questio
 
 Your response must be in a JSON object format.
 `,
-  model: 'googleai/gemini-1.5-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const generateTechnicalQuestionFlow = ai.defineFlow(
