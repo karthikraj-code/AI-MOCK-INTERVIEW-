@@ -45,7 +45,7 @@ const prompt = ai.definePrompt({
 
   Respond only with the answer. Do not include any greetings or introductory phrases like "Here is the answer:".
   `,
-  model: 'googleai/gemini-2.0-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const runChatbotFlow = ai.defineFlow(

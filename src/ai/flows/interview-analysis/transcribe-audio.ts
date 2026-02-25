@@ -34,7 +34,7 @@ const transcribeAudioPrompt = ai.definePrompt({
   input: {schema: TranscribeAudioInputSchema},
   output: {schema: TranscribeAudioOutputSchema},
   prompt: `Transcribe the following audio into text.\n\nAudio: {{media type="video/webm" url=audioDataUri}}`,
-  model: 'googleai/gemini-2.0-flash',
+  model: 'googleai/gemini-2.5-flash',
 });
 
 const transcribeAudioFlow = ai.defineFlow(

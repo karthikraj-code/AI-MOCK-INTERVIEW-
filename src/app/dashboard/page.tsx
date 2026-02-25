@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { AppLayout } from "@/components/app-layout";
@@ -66,12 +67,22 @@ export default function DashboardPage() {
   const [pastInterviews, setPastInterviews] = useState<PastInterview[]>([]);
   const [userName, setUserName] = useState("User");
   const [scrollY, setScrollY] = useState(0);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Prefer NextAuth session for user name when available
+  useEffect(() => {
+    if (session?.user?.name) {
+      setUserName(session.user.name);
+    } else if (session?.user?.email) {
+      setUserName(session.user.email);
+    }
+  }, [session]);
 
   useEffect(() => {
     // Try to fetch user name from API
